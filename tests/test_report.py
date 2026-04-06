@@ -14,3 +14,8 @@ def test_generate_report_for_lesion():
 def test_generate_report_missing_label():
     with pytest.raises(ValueError):
         generate_report({"confidence": 0.95})
+
+def test_generate_report_includes_confidence():
+    prediction = {"label": "normal", "confidence": 0.95}
+    report = generate_report(prediction)
+    assert "0.95" in report
